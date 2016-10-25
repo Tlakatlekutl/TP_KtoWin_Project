@@ -1,0 +1,89 @@
+body {
+  padding-top:  70px;
+}
+.ktowin-left-row {
+  position: fixed;  ;
+}
+.ktowin-nav-avatar {
+  max-height: 50px;
+  width: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.ktowin-avatar {
+  max-height: 80px;
+  width: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.ktowin-games-list {
+  list-style: none;
+}
+.ktowin-games-list > li {
+  font-size: 16px;
+}
+#ktowin-games-list {
+  padding-left: 20px;
+}
+#ktowin-tags-list {
+  padding-left: 20px;
+}
+.ktowin-tags-list-values {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.ktowin-hot-tag {
+  font-size: 18px;
+  color: red;
+}
+.ktowin-medium-tag {
+  font-size: 16px;
+  color: green;
+}
+.media {
+  padding: 20px;
+}
+.media-body {
+  padding-left: 10px;
+}
+.ktowin-media-row {
+  display: inline;
+  width: 500px; ;
+}
+.ktowin-media-row > h5 {
+  padding-left: 20px;
+}
+.ktowin-nopading {
+  display: inline;
+  padding: 0px;
+}
+.ktowin-media-row > .ktowin-date {
+  float: right;
+  padding-right: 100px;
+  margin: 0px;
+
+}
+.ktowin-media-ratio {
+  padding-top: 20px;
+  padding-left: 10px;
+}
+.ktowin-media-ratio-value {
+  font-size: 20px;
+  padding: 5px;
+  padding-left: auto;
+}
+.ktowin-submit-btn {
+  margin-top: 10px;
+  background-color: darkgray;
+}
+.ktowin-newpost-form {
+  padding-left: 0px;
+}
+.input-group[class*=col-] {
+  float: none;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.ktowin-find {
+  font-size: 18px;
+}

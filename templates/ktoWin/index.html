@@ -1,0 +1,132 @@
+{% extends "ktoWin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" class="active"><a href="#">New</a></li>
+  <li role="presentation"><a href="#">Popular</a></li>
+</ul>
+<div class="media bg-success">
+  <div class="media-left media-top ">
+    <img src="{% static "src/chess-icon.ico" %}" class="media-object" style="width:60px">
+    <div class="ktowin-media-ratio">
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      <div class="ktowin-media-ratio-value">
+        <span>500</span>
+      </div>
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </div>
+  </div>
+  <div class="media-body">
+    <h3 class="media-heading"><a href="/post/">Russia win in chess</a></h3>
+    <p>
+      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
+    </p>
+    <div class="media-bottom ktowin-media-row">
+        <a class="ktowin-media-row" href="#">Comments <span class="badge">42</span></a>
+        <h5 class="ktowin-media-row">Tags:</h5>
+        <a class="ktowin-media-row" href="#">Victory</a>
+        <a class="ktowin-media-row" href="#">Russia</a>
+        <a class="ktowin-media-row" href="#">Kasparov</a>
+        <h5 class="ktowin-date "> 09.10.2016</h5>
+    </div>
+  </div>
+</div>
+<div class="media bg-info">
+  <div class="media-left media-top ">
+    <img src="{% static "src/chess-icon.ico" %}" class="media-object" style="width:60px">
+    <div class="ktowin-media-ratio">
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      <div class="ktowin-media-ratio-value">
+        <span>500</span>
+      </div>
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </div>
+  </div>
+  <div class="media-body">
+    <h3 class="media-heading"><a href="/new/">Just news</a></h3>
+    <p>
+      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
+    </p>
+    <div class="media-bottom ktowin-media-row">
+        <a class="ktowin-media-row" href="#">Comments <span class="badge">42</span></a>
+        <h5 class="ktowin-media-row">Tags:</h5>
+        <a class="ktowin-media-row" href="#">World Championship</a>
+        <a class="ktowin-media-row" href="#">Russia</a>
+        <a class="ktowin-media-row" href="#">Kasparov</a>
+        <h5 class="ktowin-date "> 09.10.2016</h5>
+    </div>
+  </div>
+</div>
+<div class="media">
+  <div class="media-left media-top ">
+    <img src="{% static "src/chess-icon.ico" %}" class="media-object" style="width:60px">
+    <div class="ktowin-media-ratio">
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      <div class="ktowin-media-ratio-value">
+        <span>500</span>
+      </div>
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </div>
+  </div>
+  <div class="media-body">
+    <h3 class="media-heading"><a href="#">Russia vs Russia or Europe vs Europe</a></h3>
+    <p>
+      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
+    </p>
+    <div class="media-bottom ktowin-media-row">
+        <a class="ktowin-media-row" href="#">Comments <span class="badge">42</span></a>
+        <h5 class="ktowin-media-row">Tags:</h5>
+        <a class="ktowin-media-row" href="#">Victory</a>
+        <a class="ktowin-media-row" href="#">Russia</a>
+        <a class="ktowin-media-row" href="#">Kasparov</a>
+        <h5 class="ktowin-date "> 09.10.2016</h5>
+    </div>
+  </div>
+</div>
+<div class="media bg-warning">
+  <div class="media-left media-top ">
+    <img src="{% static "src/chess-icon.ico" %}" class="media-object" style="width:60px">
+    <div class="ktowin-media-ratio">
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      <div class="ktowin-media-ratio-value">
+        <span>500</span>
+      </div>
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </div>
+  </div>
+  <div class="media-body">
+    <h3 class="media-heading"><a href="#">Russia losed</a></h3>
+    <p>
+      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
+    </p>
+    <div class="media-bottom ktowin-media-row">
+        <a class="ktowin-media-row" href="#">Comments <span class="badge">42</span></a>
+        <h5 class="ktowin-media-row">Tags:</h5>
+        <a class="ktowin-media-row" href="#">Victory</a>
+        <a class="ktowin-media-row" href="#">Russia</a>
+        <a class="ktowin-media-row" href="#">Kasparov</a>
+        <h5 class="ktowin-date "> 09.10.2016</h5>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}

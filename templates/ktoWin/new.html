@@ -1,0 +1,57 @@
+{% extends "ktoWin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<h2 class="col-sm-offset-2">New post</h2>
+</br>
+<form class="form-horizontal ktowin-newpost-form">
+  <div class="form-group has-error">
+    <label for="inputTitle" class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+      <span id="helpBlockTags" class="help-block">Empty field</span>
+    </div>
+  </div>
+  <div class="form-group has-error">
+    <label for="inputText" class="col-sm-2 control-label">Text</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" name="text" placeholder="Content here..."rows="8"></textarea>
+      <span id="helpBlockTags" class="help-block">Empty Field</span>
+    </div>
+  </div>
+  <div class="form-group has-error">
+    <label for="inputTags" class="col-sm-2 control-label">Tags</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputTags" placeholder="Tags, here, please">
+      <span id="helpBlockTags" class="help-block">Wrong tags</span>
+    </div>
+  </div>
+  <div class="form-group has-success">
+    <label for="inputGame" class="col-sm-2 control-label">Game</label>
+    <div class="col-sm-10">
+      <select multiple class="form-control" id = "inputGame">
+        <option>Football</option>
+        <option>Baseball</option>
+        <option>Dota2</option>
+        <option>Racing</option>
+        <option>League of legends</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputType" class="col-sm-2 control-label">Post type</label>
+    <div class="col-sm-10">
+      <select multiple class="form-control" id = "inputGame">
+        <option>Our team win</option>
+        <option>Our team lose</option>
+        <option>No our team</option>
+        <option>Simple news</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Save</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

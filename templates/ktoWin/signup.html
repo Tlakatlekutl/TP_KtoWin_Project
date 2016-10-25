@@ -1,0 +1,48 @@
+{% extends "ktoWin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<h2 class="col-sm-offset-2">Registration</h2>
+</br>
+<form class="form-horizontal ktowin-newpost-form">
+  <div class="form-group">
+    <label for="inputLogin2" class="col-sm-2 control-label">Login</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputLogin2" placeholder="Login">
+    </div>
+  </div>
+  <div class="form-group has-error has-feedback">
+    <label for="inputEmail2" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
+      <p class="help-block">Wrong email</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputNickname2" class="col-sm-2 control-label">Nickname</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputNickname2" placeholder="Nickname">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword2" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group has-error">
+    <label for="inputFile2" class="col-sm-2 control-label">Image File</label>
+    <div class="col-sm-10">
+      <input type="file" class=" form-control" id="inputFile2">
+      <p class="help-block">Error file loading</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Register!</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
