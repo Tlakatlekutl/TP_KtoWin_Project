@@ -32,12 +32,15 @@
           <a class="navbar-brand" href="/">KTO WIN?</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+
           {% if not user.is_authenticated %}
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">USER <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/settings/"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                <li><a href="{% url 'new_post' %}"><span ></span> New post</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{% url 'settings' %}"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
               </ul>
@@ -46,7 +49,7 @@
           <img src="{% static "/src/avatar-default.png" %}" alt="Avatar" class="navbar-right img-circle ktowin-nav-avatar" />
           {% else %}
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/signup/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
           {% endif %}
@@ -70,79 +73,12 @@
 
       </div>
       <div class="col-md-3">
-        <div class="ktowin-left-row">
-          <div class="tags-list">
-            <h3 id="ktowin-tags-list">Popular Tags</h3>
-            <div class="ktowin-tags-list-values">
-              <a class="ktowin-hot-tag" href="/find/">Russia</a>
-              <a href="#">USA</a>
-              <a class="ktowin-medium-tag" href="#">Isinbaeva</a>
-              <a href="#">Faker</a>
-              <a href="#">Moscow</a>
-              <a class="ktowin-hot-tag" href="/find/">Victory</a>
-            </div>
-          </div>
-          <div class="games-list">
-            <h3 id="ktowin-games-list">Popular Games</h3>
-            <ul class="ktowin-games-list">
-              <li><a href="#">Football</a></li>
-              <li><a href="#">Chess</a></li>
-              <li><a href="#">Dota2</a></li>
-              <li><a href="#">Tennis</a></li>
-              <li><a href="#">Racing</a></li>
-              <li><a href="#">Baseball</a></li>
-              <li><a href="#">League of legends</a></li>
-            </ul>
-          </div>
-        </div>
+        {% include "ktoWin/right_bar.html" %}
       </div>
 
     </div> <!--end row-->
-    {% if user.is_authenticated%}
-    <div id="myModal" class="modal" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Log in</h4>
-          </div>
-          <div class="modal-body">
-            <form class="form-horizontal" >
-              <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox"> Remember me
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Sign in</button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% if not user.is_authenticated%}
+      {% include "ktoWin/modal_login.html" %}
     {% endif %}
 
 

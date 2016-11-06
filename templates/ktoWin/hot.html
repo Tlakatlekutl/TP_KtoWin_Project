@@ -2,8 +2,8 @@
 {% load staticfiles %}
 {% block content %}
 <ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="{% url 'index' %}">New</a></li>
-  <li role="presentation"><a href="{% url 'hot' %}">Popular</a></li>
+  <li role="presentation"><a href="{% url 'index' %}">New</a></li>
+  <li role="presentation" class="active"><a href="">Popular</a></li>
 </ul>
 {% for post in posts %}
   {% include "ktoWin/post_preview.html" %}

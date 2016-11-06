@@ -8,74 +8,29 @@
     <div class="ktowin-media-ratio">
       <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
       <div class="ktowin-media-ratio-value">
-        <span>500</span>
+          <span>{{post.rating}}</span>
       </div>
       <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
     </div>
   </div>
   <div class="media-body">
-    <h3 class="media-heading">Just news</h3>
-    <p>
-      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
-    </p>
-    <p>
-      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
-    </p>
-    <p>
-      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
-    </p>
+    <h3 class="media-heading">{{post.title|truncatechars:255}}</h3>
+    <p>{{post.text|linebreaksbr}}</p>
+
     <div class="media-bottom ktowin-media-row">
-        <h5 class="ktowin-media-row ">Tags:</h5>
-        <a class="ktowin-media-row" href="#">World Championship</a>
-        <a class="ktowin-media-row" href="#">Russia</a>
-        <a class="ktowin-media-row" href="#">Kasparov</a>
-        <h5 class="ktowin-date "> 09.10.2016</h5>
+        <h5 class="ktowin-media-row">Tags:</h5>
+        {% for tag in post.tags %}
+          <a class="ktowin-media-row" href="{% url 'find_by_tag' tag=tag %}">{{tag}}</a>
+        {% endfor %}
+        <h5 class="ktowin-date "> {{post.date}}</h5>
     </div>
   </div>
 </div>
+<hr>
+{% for comment in post.comments %}
+  {% include "ktoWin/comment_block.html" %}
+{% endfor %}
 
-</hr>
-
-<div class="media">
-  <div class="media-left">
-    <img src="{% static "/src/avatar-default.png" %}" alt="Avatar" class="img-circle ktowin-avatar" />
-    <div class="ktowin-media-ratio">
-      <div class="ktowin-media-ratio-value">
-        <span>500</span>
-      </div>
-      <div class="btn-group btn-group-xs" role="group">
-        <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-        <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-      </div>
-    </div>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">User 1</h4>
-    <p>
-      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
-    </p>
-  </div>
-</div>
-<div class="media">
-  <div class="media-left">
-    <img src="{% static "/src/avatar-default.png" %}" alt="Avatar" class="img-circle ktowin-avatar" />
-    <div class="ktowin-media-ratio">
-      <div class="ktowin-media-ratio-value">
-        <span>500</span>
-      </div>
-      <div class="btn-group btn-group-xs" role="group">
-        <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-        <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-thumbs-down"></span></button>
-      </div>
-    </div>
-  </div>
-  <div class="media-body">
-    <h4 class="media-heading">User 1</h4>
-    <p>
-      Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
-    </p>
-  </div>
-</div>
 <form class="form-horizontal" method="post">
   <textarea class="form-control" name="comment" placeholder="Comment here..."rows="4"></textarea>
   <button type="submit" class="btn btn-default ktowin-submit-btn" name="submit_comment">Comment!</button>

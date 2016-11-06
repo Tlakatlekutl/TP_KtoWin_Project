@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<div class="media {{post.post_type}}">
+  <div class="media-left media-top ">
+    <img src="{% static "src/chess-icon.ico" %}" class="media-object" style="width:60px">
+    <div class="ktowin-media-ratio">
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      <div class="ktowin-media-ratio-value">
+        <span>{{post.rating}}</span>
+      </div>
+      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
+    </div>
+  </div>
+  <div class="media-body">
+    <h3 class="media-heading"><a href="{% url 'post_by_pk' pk=post.id %}">{{post.title|title|truncatechars:80}}</a></h3>
+    <p>
+      {{post.text|linebreaksbr|truncatewords:50}}
+    </p>
+    {% include "ktoWin/post_info_bar.html" %}
+  </div>
+</div>

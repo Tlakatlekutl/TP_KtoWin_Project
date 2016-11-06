@@ -1,10 +1,10 @@
 {% extends "ktoWin/base.html" %}
 {% load staticfiles %}
 {% block content %}
-<ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="{% url 'index' %}">New</a></li>
-  <li role="presentation"><a href="{% url 'hot' %}">Popular</a></li>
-</ul>
+<div class="alert alert-info ktowin-find">
+  Find: {{tag}}
+</div>
+
 {% for post in posts %}
   {% include "ktoWin/post_preview.html" %}
 {% endfor %}

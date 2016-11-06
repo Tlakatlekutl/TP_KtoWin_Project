@@ -1,0 +1,8 @@
+<div class="media-bottom ktowin-media-row">
+    <a class="ktowin-media-row" href="#">Comments <span class="badge">{{post.comments_count}}</span></a>
+    <h5 class="ktowin-media-row">Tags:</h5>
+    {% for tag in post.tags %}
+      <a class="ktowin-media-row" href="{% url 'find_by_tag' tag=tag %}">{{tag}}</a>
+    {% endfor %}
+    <h5 class="ktowin-date "> {{post.date}}</h5>
+</div>
