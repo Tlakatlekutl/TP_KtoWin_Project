@@ -1,6 +1,12 @@
 body {
   padding-top:  70px;
 }
+.ktowin-vote {
+  text-align: center;
+}
+.ktowin-comment {
+  border: 2px groove gray;
+}
 .ktowin-left-row {
   position: fixed;  ;
 }
@@ -71,6 +77,8 @@ body {
   font-size: 20px;
   padding: 5px;
   padding-left: auto;
+  text-align: center;
+  margin-left: -8px;
 }
 .ktowin-submit-btn {
   margin-top: 10px;

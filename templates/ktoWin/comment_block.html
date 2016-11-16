@@ -1,10 +1,10 @@
 {% load staticfiles %}
-<div class="media">
+<div class="media ktowin-comment">
   <div class="media-left">
-    <img src="{% static "/src/avatar-default.png" %}" alt="Avatar" class="img-circle ktowin-avatar" />
+    <img src="http://ktowin.my/uploads/{{comment.user.userprofile.avatar}}" alt="Avatar" class="img-circle ktowin-avatar" />
     <div class="ktowin-media-ratio">
       <div class="ktowin-media-ratio-value">
-        <span>{{comment.likes}}</span>
+        <span class = "ktowin-vote">{{comment.like_count}}</span>
       </div>
       <div class="btn-group btn-group-xs" role="group">
         <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-thumbs-up"></span></button>
@@ -13,9 +13,9 @@
     </div>
   </div>
   <div class="media-body">
-    <h4 class="media-heading">{{comment.user}}</h4>
+    <h4 class="media-heading">{{comment.user.userprofile.nickname}}</h4>
     <p>
-      {{comment.text}}
+      {{comment.comment_text}}
     </p>
   </div>
 </div>

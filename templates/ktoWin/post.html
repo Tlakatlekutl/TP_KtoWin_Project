@@ -4,22 +4,22 @@
 
 <div class="media">
   <div class="media-left media-top ">
-    <img src="{% static "src/chess-icon.ico" %}" class="media-object" style="width:60px">
+    <img src="http://ktowin.my/uploads/{{post.game.image}}" class="media-object" style="width:60px">
     <div class="ktowin-media-ratio">
       <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
       <div class="ktowin-media-ratio-value">
-          <span>{{post.rating}}</span>
+          <span>{{post.like_count}}</span>
       </div>
       <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
     </div>
   </div>
   <div class="media-body">
     <h3 class="media-heading">{{post.title|truncatechars:255}}</h3>
-    <p>{{post.text|linebreaksbr}}</p>
+    <p>{{post.content|linebreaksbr}}</p>
 
     <div class="media-bottom ktowin-media-row">
         <h5 class="ktowin-media-row">Tags:</h5>
-        {% for tag in post.tags %}
+        {% for tag in post.tags.all %}
           <a class="ktowin-media-row" href="{% url 'find_by_tag' tag=tag %}">{{tag}}</a>
         {% endfor %}
         <h5 class="ktowin-date "> {{post.date}}</h5>
@@ -27,10 +27,12 @@
   </div>
 </div>
 <hr>
-{% for comment in post.comments %}
+{% for comment in comments %}
   {% include "ktoWin/comment_block.html" %}
+{% empty %}
+  <h4>К этой новости еще нет комментариев</h4>
 {% endfor %}
-
+<br/>
 <form class="form-horizontal" method="post">
   <textarea class="form-control" name="comment" placeholder="Comment here..."rows="4"></textarea>
   <button type="submit" class="btn btn-default ktowin-submit-btn" name="submit_comment">Comment!</button>

@@ -78,12 +78,14 @@ WSGI_APPLICATION = 'SiteKtoWin.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ktowin_db',
+        'USER': 'root',
+        'PASSWORD': 'root',
     }
 }
 
-
+# AUTH_PROFILE_MODULE = 'ktoWin.UserProfile'
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -116,8 +118,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = 'http://ktowin.my/static/'
+STATIC_ROOT = 'static/'

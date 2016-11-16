@@ -1,47 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseBadRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-import random
+from .models import Post, Comment
+from django.contrib.auth.models import User
+
 
 # Create your views here.
-posts = []
-for i in range(0, 30):
-    posts.append({
-        'id': i,
-        'title': 'title ' + str(i),
-        'rating': random.randint(1, 1000),
-        'date': str(i).zfill(2) + '.11.2016',
-        'text': """
-                Давно выяснено, что при оценке дизайна и композиции читаемый
-                текст мешает сосредоточиться. Lorem Ipsum используют потому,
-                что тот обеспечивает более или менее стандартное заполнение шаблона
-                """*6,
-        'tags': random.sample(['tag1', 'tag2', 'tag3', 'tag4'], random.randint(1, 4)),
-        'game': random.choice(['football', 'dota2', 'racing', 'Lol', 'baseball']),
-        'post_type': random.choice(['bg-success', 'bg-info', 'bg-warning', '']),
-        'comments_count': random.randint(10, 100),
-        'comments': [
-            {
-                'user': 'User1',
-                'text': """
-                        Давно выяснено, что при оценке дизайна и композиции читаемый
-                        текст мешает сосредоточиться. Lorem Ipsum используют потому,
-                        что тот обеспечивает более или менее стандартное заполнение шаблона
-                        """*4,
-                'likes': random.randint(1, 500)
-            },
-            {
-                'user': 'User2',
-                'text': """
-                        Давно выяснено, что при оценке дизайна и композиции читаемый
-                        текст мешает сосредоточиться. Lorem Ipsum используют потому,
-                        что тот обеспечивает более или менее стандартное заполнение шаблона
-                        """*4,
-                'likes': random.randint(1, 500),
-            }
-        ]
-    })
-
 
 def paginate(objects_list, page):
     # page = request.GET.get('page', 1)
@@ -57,35 +21,32 @@ def paginate(objects_list, page):
 
 
 def index(request, page=1):
-    new = sorted(posts, reverse=True, key=lambda k: k['date'])
+    # new = sorted(posts, reverse=True, key=lambda k: k['date'])
+    new = Post.objects.new_posts()
     object_page, paginator = paginate(new, page)
     return render(request, 'ktoWin/index.html', {'posts': object_page})
 
 
 def hot(request, page=1):
-    hot = sorted(posts, reverse=True, key=lambda k: k['rating'])
+    hot = Post.objects.hot_posts()
     object_page, paginator = paginate(hot, page)
     return render(request, 'ktoWin/hot.html', {'posts': object_page})
 
 
 def post(request, pk):
-    # post_by_pk = get_object_or_404(model, id=pk)
-    try:
-        id = int(pk)
-        post_by_pk = posts[id]
-    except:
-        return HttpResponseBadRequest("Very bad request")
-    return render(request, 'ktoWin/post.html', {'post': post_by_pk})
+    post_by_pk = get_object_or_404(Post, id=pk)
+    comments = Comment.objects.filter(post=post_by_pk)
+    return render(request, 'ktoWin/post.html',
+                  {'post': post_by_pk, 'comments': comments})
 
 
 def find_by_tag(request, tag, page=1):
     try:
-        post_by_tag = [p for p in posts if tag in p['tags']]
+        post_by_tag, tag_name = Post.objects.posts_by_tag(tag)
     except:
         return HttpResponseBadRequest("Very bad request")
-
     object_page, paginator = paginate(post_by_tag, page)
-    return render(request, 'ktoWin/find_by_tag.html', {'posts': object_page, 'tag': tag})
+    return render(request, 'ktoWin/find_by_tag.html', {'posts': object_page, 'tag': tag_name.name})
 
 
 def new_post(request):

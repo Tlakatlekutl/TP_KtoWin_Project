@@ -7,6 +7,8 @@
 
 {% for post in posts %}
   {% include "ktoWin/post_preview.html" %}
+{% empty %}
+  <h3>Нет записей, удовлетворяющих данному запросу</h3>
 {% endfor %}
 
 {% include "ktoWin/paginator.html" %}
