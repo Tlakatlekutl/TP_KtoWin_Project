@@ -20,15 +20,17 @@ def paginate(objects_list, page):
     return object_page, paginator
 
 
-def index(request, page=1):
+def index(request):
     # new = sorted(posts, reverse=True, key=lambda k: k['date'])
     new = Post.objects.new_posts()
+    page = request.GET.get('page')
     object_page, paginator = paginate(new, page)
     return render(request, 'ktoWin/index.html', {'posts': object_page})
 
 
-def hot(request, page=1):
+def hot(request):
     hot = Post.objects.hot_posts()
+    page = request.GET.get('page')
     object_page, paginator = paginate(hot, page)
     return render(request, 'ktoWin/hot.html', {'posts': object_page})
 
@@ -40,11 +42,12 @@ def post(request, pk):
                   {'post': post_by_pk, 'comments': comments})
 
 
-def find_by_tag(request, tag, page=1):
+def find_by_tag(request, tag):
     try:
         post_by_tag, tag_name = Post.objects.posts_by_tag(tag)
     except:
         return HttpResponseBadRequest("Very bad request")
+    page = request.GET.get('page')
     object_page, paginator = paginate(post_by_tag, page)
     return render(request, 'ktoWin/find_by_tag.html', {'posts': object_page, 'tag': tag_name.name})
 

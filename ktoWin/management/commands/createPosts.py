@@ -5,38 +5,34 @@ import random
 
 
 class Command(BaseCommand):
-    args = ''
+    args = ' some text here'
     help = 'Create n Posts'
-    t1 = Tag.objects.get(id=1)
-    t2 = Tag.objects.get(id=2)
-    t3 = Tag.objects.get(id=3)
-    t4 = Tag.objects.get(id=4)
-    tags = [t1, t2, t3, t4]
+    tags = Tag.objects.all()
+    users = User.objects.all()
+    games = Game.objects.all()
 
-    u1 = User.objects.get(id=1)
-    u2 = User.objects.get(id=2)
-    u3 = User.objects.get(id=3)
-    users = [u1, u2, u3]
-
-    g1 = Game.objects.get(id=1)
-    g2 = Game.objects.get(id=2)
-    g3 = Game.objects.get(id=3)
-    g4 = Game.objects.get(id=4)
-    games = [g1, g2, g3, g4]
+    def add_arguments(self, parser):
+        parser.add_argument('-n', type=int,
+                            help='Add N posts')
 
     def createPosts(self, n):
         for i in range(n):
-            p = Post(title='Крутое название {}'.format(str(i)),
+            p = Post(title='Крутое название {}-{}'.format(str(i), str(random.randint(0, 1000))),
                      content='Очень содержательный текст, ОЧЕНЬ!!! Шекспир позавидует, честно)'*50,
                      author=random.choice(self.users),
                      game=random.choice(self.games),
                      post_type=random.choice(['bg-success', 'bg-info', 'bg-warning', '']),
-                     like_count=random.randint(0, 100),
-                     commemt_count=random.randint(0, 50))
+                     like_count=0,
+                     commemt_count=0)
             p.save()
             for i in range(random.randrange(1, 4)):
-                p.tags.add(self.tags[i])
-            p.save()
+                try:
+                    p.tags.add(random.choice(self.tags))
+                except:
+                    pass
+                finally:
+                    p.save()
 
     def handle(self, *args, **options):
-        self.createPosts(n=2)
+        print('Add {} posts...'.format(str(options['n'])))
+        self.createPosts(n=options['n'])
