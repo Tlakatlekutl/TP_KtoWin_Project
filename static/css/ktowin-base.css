@@ -53,6 +53,9 @@ body {
   padding-left: 10px;
 }
 .ktowin-media-row {
+  position: relative;;
+  bottom: 0;
+  padding-left: 9px;
   display: inline;
   width: 500px; ;
 }
@@ -65,7 +68,7 @@ body {
 }
 .ktowin-media-row > .ktowin-date {
   float: right;
-  padding-right: 100px;
+  padding-right: 10px;
   margin: 0px;
 
 }

@@ -1,6 +1,7 @@
 {% extends "ktoWin/base.html" %}
 {% load staticfiles %}
 {% block content %}
+{% load bootstrap3 %}
 
 <div class="media">
   <div class="media-left media-top ">
@@ -33,8 +34,9 @@
   <h4>К этой новости еще нет комментариев</h4>
 {% endfor %}
 <br/>
-<form class="form-horizontal" method="post">
-  <textarea class="form-control" name="comment" placeholder="Comment here..."rows="4"></textarea>
+<form class="form-horizontal" method="POST">
+  {% csrf_token %}
+  {% bootstrap_form form%}
   <button type="submit" class="btn btn-default ktowin-submit-btn" name="submit_comment">Comment!</button>
 </form>
 {% endblock %}

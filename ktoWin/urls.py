@@ -17,4 +17,6 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^search/$', views.search, name='search'),
     url(r'^test/$', views.test, name='test'),
+    url(r'^login/$', views.loginUser, name='login'),
+    url(r'^logout/$', views.logoutUser, name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

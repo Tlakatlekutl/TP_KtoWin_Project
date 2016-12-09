@@ -53,7 +53,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     comment_text = models.CharField('Комментарий', max_length=1024)
-    like_count = models.IntegerField('Колличество лайков')
+    like_count = models.IntegerField('Колличество лайков', default=0)
 
     def __str__(self):
         return '{} {}'.format(self.post, self.user)
@@ -77,14 +77,14 @@ class Post(models.Model):
     title = models.CharField('Заголовок', max_length=255)
     content = models.TextField('Содержание')
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-    tags = models.ManyToManyField('Tag')
-    game = models.ForeignKey('Game', on_delete=models.CASCADE)
+    tags = models.ManyToManyField('Tag', verbose_name='Теги')
+    game = models.ForeignKey('Game', verbose_name='Игра', on_delete=models.CASCADE)
 
     post_type = models.CharField('Тип записи', max_length=10, blank=True,
                                  choices=POST_TYPES, default=SIMPLE)
     created_date = models.DateTimeField('Дата и время создания', auto_now=True)
-    like_count = models.IntegerField('Колличество лайков')
-    commemt_count = models.IntegerField('Колличество комментариев')
+    like_count = models.IntegerField('Колличество лайков', default=0)
+    commemt_count = models.IntegerField('Колличество комментариев', default=0)
 
     objects = PostManager()
 
@@ -124,7 +124,7 @@ class Post(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nickname = models.CharField('Ник', max_length=30)
+    nickname = models.CharField('Ник', unique=True, max_length=30)
     avatar = models.ImageField('Аватар', upload_to='avatars/')
 
     def __str__(self):

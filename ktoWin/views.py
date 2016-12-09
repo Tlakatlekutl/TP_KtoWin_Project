@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseBadRequest
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.http import HttpResponseBadRequest, HttpResponseRedirect
+from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post, Comment
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
+from .models import Post, Comment
+from .forms import PostForm, SignupUserForm, SignupProfileForm, CommentForm
 
 
 # Create your views here.
@@ -38,8 +41,19 @@ def hot(request):
 def post(request, pk):
     post_by_pk = get_object_or_404(Post, id=pk)
     comments = Comment.objects.filter(post=post_by_pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = post_by_pk
+            comment.like_count = 0
+            c_id = form.save().id
+            return redirect(reverse("post_by_pk", kwargs={"pk": pk}))
+    else:
+        form = CommentForm()
     return render(request, 'ktoWin/post.html',
-                  {'post': post_by_pk, 'comments': comments})
+                  {'post': post_by_pk, 'comments': comments, 'form': form})
 
 
 def find_by_tag(request, tag):
@@ -53,15 +67,58 @@ def find_by_tag(request, tag):
 
 
 def new_post(request):
-    return render(request, 'ktoWin/new.html', {})
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            p_id = form.save().id
+            return redirect(reverse("post_by_pk", kwargs={"pk": p_id}))
+            # return HttpResponseRedirect('http://ktowin.my/post/'+str(p_id))
+    else:
+        form = PostForm()
+    return render(request, 'ktoWin/new.html', {'form': form})
 
 
 def settings(request):
     return render(request, 'ktoWin/settings.html', {})
 
 
+# @require_POST
+def loginUser(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return JsonResponse({})
+    else:
+        return JsonResponse({'status': 'false',
+                             'message': 'Incorrect password or login'},
+                            status=403)
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect(reverse('index'))
+
+
 def signup(request):
-    return render(request, 'ktoWin/signup.html', {})
+    if request.method == 'POST':
+        u_form = SignupUserForm(request.POST,  prefix="form1")
+        p_form = SignupProfileForm(request.POST, request.FILES,  prefix="form2")
+        if u_form.is_valid() and p_form.is_valid():
+            user = u_form.save()
+            profile = p_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            return redirect(reverse("index"))
+    else:
+        u_form = SignupUserForm(prefix="form1")
+        p_form = SignupProfileForm(prefix="form2")
+    return render(request, 'ktoWin/signup.html', {'u_form': u_form,
+                                                  'p_form': p_form
+                                                  })
 
 
 def search(request):
