@@ -7,11 +7,12 @@
   <div class="media-left media-top ">
     <img src="http://ktowin.my/uploads/{{post.game.image}}" class="media-object" style="width:60px">
     <div class="ktowin-media-ratio">
-      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-up"></span></button>
+      {% csrf_token %}
+      <button post-id={{post.id}} class="btn btn-default js-post-like" type="button" name="like"><span post-id={{post.id}} class="glyphicon glyphicon-chevron-up"></span></button>
       <div class="ktowin-media-ratio-value">
-          <span>{{post.like_count}}</span>
+        <span id={{post.id}}>{{post.like_count}}</span>
       </div>
-      <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-chevron-down"></span></button>
+      <button post-id={{post.id}} class="btn btn-default js-post-dislike" type="button" name="dislike"><span post-id={{post.id}} class="glyphicon glyphicon-chevron-down"></span></button>
     </div>
   </div>
   <div class="media-body">
@@ -34,9 +35,11 @@
   <h4>К этой новости еще нет комментариев</h4>
 {% endfor %}
 <br/>
+{% if user.is_authenticated %}
 <form class="form-horizontal" method="POST">
   {% csrf_token %}
   {% bootstrap_form form%}
   <button type="submit" class="btn btn-default ktowin-submit-btn" name="submit_comment">Comment!</button>
 </form>
+{% endif %}
 {% endblock %}

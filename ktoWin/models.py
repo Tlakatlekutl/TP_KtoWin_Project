@@ -26,6 +26,7 @@ class Like(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
+    like_status = models.IntegerField(choices=[(1, 1), (-1, -1)], default=1)
 
     def __str__(self):
         return 'Пользователь {1} оценил {2} {0}'.format(self.content_object,
@@ -92,14 +93,14 @@ class Post(models.Model):
     def add_like(instance, **kwargs):
         ct = instance.content_type
         post = ct.get_object_for_this_type(pk=instance.object_id)
-        post.like_count += 1
+        post.like_count += instance.like_status
         post.save()
 
     @receiver(post_delete, sender=Like)
     def delete_like(instance, **kwargs):
         ct = instance.content_type
         post = ct.get_object_for_this_type(pk=instance.object_id)
-        post.like_count -= 1
+        post.like_count -= instance.like_status
         post.save()
 
     @receiver(post_save, sender=Comment)

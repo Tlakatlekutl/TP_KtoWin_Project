@@ -19,7 +19,7 @@
       },
       error: data => {
         $(".ktowin-login-error").css('display',"block")
-        console.log(data.message);
+        console.log(data);
       }
     });
   });

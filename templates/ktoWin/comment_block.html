@@ -1,14 +1,15 @@
 {% load staticfiles %}
 <div class="media ktowin-comment">
   <div class="media-left">
-    <img src="http://ktowin.my/uploads/{{comment.user.userprofile.avatar}}" alt="Avatar" class="img-circle ktowin-avatar" />
+    <img src="{{MEDIA_URL}}{{comment.user.userprofile.avatar}}" alt="Avatar" class="img-circle ktowin-avatar" />
     <div class="ktowin-media-ratio">
       <div class="ktowin-media-ratio-value">
-        <span class = "ktowin-vote">{{comment.like_count}}</span>
+        <span id={{comment.id}} class="ktowin-vote">{{comment.like_count}}</span>
       </div>
       <div class="btn-group btn-group-xs" role="group">
-        <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-        <button class="btn btn-default" type="button" name="dislike"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+        {% csrf_token %}
+        <button comment-id={{comment.id}} class="btn btn-default js-comment-like" type="button" name="dislike"><span  comment-id={{comment.id}} class="glyphicon glyphicon-thumbs-up"></span></button>
+        <button comment-id={{comment.id}} class="btn btn-default js-comment-dislike" type="button" name="dislike"><span comment-id={{comment.id}}  class="glyphicon glyphicon-thumbs-down"></span></button>
       </div>
     </div>
   </div>
