@@ -6,8 +6,7 @@ db = MySQLdb.connect(
     passwd='root',
     db='ktowin_db')
 c = db.cursor()
-c.execute("SELECT (%s, %s) FROM auth_user", ("username", "is_staff"
-))
+c.execute("SELECT (%s, %s) FROM auth_user", ("username", "is_staff"))
 c.execute("SELECT (%s), (%s) FROM auth_user", ("username", "is_staff"))
 c.fetchall()
 c.execute("SELECT (%s), (%s) FROM auth_user", "username", "is_staff")
