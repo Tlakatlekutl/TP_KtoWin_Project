@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Plot</title>
+</head>
+<body>
+<form class="plot-form">
+  <div class="plot-input">
+    <label for="form">From: </label>
+    <input class="from" type="text" id="from">
+  </div>
+  <div class="plot-input">
+    <label for="to">To:</label>
+    <input class="to" type="text" id="to">
+  </div>
+  <div class="plot-input">
+    <label for="fun`">Fun: </label>
+    <input class="fun" type="text" id="fun">
+  </div>
+
+    <button action='/' class="draw">Plot!</button>
+
+</form>
+
+<div class="graph"></div>
+
+<script type="text/javascript" src="http://ktowin.my/static/js/jquery.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"​ ></script>
+<script src="index.js"></script>
+</body>
+</html>

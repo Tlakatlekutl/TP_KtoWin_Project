@@ -1,0 +1,20 @@
+.graph {
+  /*margin: 15px;*/
+  width: 600px;
+  height: 600px;
+  border: solid black;
+}
+
+.plot-input {
+  /*margin: 15px;*/
+  clear: both;
+  text-align: right;
+}
+.plot-form {
+  float: left;
+}
+
+.graph {
+  position: absolute;
+  margin-top:100px;
+}
