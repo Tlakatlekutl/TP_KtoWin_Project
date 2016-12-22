@@ -20,7 +20,6 @@
           document.getElementById(data.id).innerHTML = data.count;
       },
       error: data => {
-        // $(".ktowin-login-error").css('display',"block")
         console.log(data);
       }
     });

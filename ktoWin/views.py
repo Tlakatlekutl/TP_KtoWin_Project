@@ -185,3 +185,11 @@ def like(request):
             return JsonResponse({'status': 'error', 'msg': 'aaaaa'}, status=500)
     else:
         return JsonResponse({'status': 'error'}, status=500)
+
+        #     temp = Like.objects.get(object_id=id_r, content_type=c_type, user=request.user)
+        # except Like.DoesNotExist:
+        #     count = c_type.like_count + v_int
+        #     l = Like(user=request.user, content_object=c_type, object_id=id_r, like_status=v_int)
+        #     l.save()
+        #     return JsonResponse({'id': id_r, 'count': count})
+        # return JsonResponse({'status': 'error', 'msg': 'aaaaa'}, status=500)
